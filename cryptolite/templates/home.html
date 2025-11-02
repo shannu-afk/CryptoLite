@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryptoLite Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top left, #0a0f1f, #000);
+      color: white;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(10, 10, 30, 0.8);
+      backdrop-filter: blur(10px);
+    }
+    .logo {
+      font-weight: 700;
+      color: #00e0ff;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #00e0ff;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 70px auto;
+      background: rgba(30, 35, 55, 0.9);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    h1 {
+      color: #00e0ff;
+      margin-bottom: 10px;
+    }
+
+    .balance {
+      font-weight: 600;
+      font-size: 22px;
+      color: #00ff84;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      margin: 10px 0;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .send-btn {
+      background: linear-gradient(to right, #008cff, #00e0ff);
+      color: white;
+      width: 95%;
+    }
+
+    .send-btn:hover {
+      opacity: 0.8;
+    }
+
+    .bottom-btns {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .bottom-btns button {
+      background: rgba(0, 255, 132, 0.15);
+      color: white;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">💰 CryptoLite</div>
+    <div>
+      <a href="/home">Home</a>
+      {% if not wallet_created %}
+        <a href="/">Create Wallet</a>
+      {% endif %}
+      <a href="/view_balance">Balance</a>
+      <a href="/view_chain">Blockchain</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>CryptoLite Dashboard</h1>
+    <p><strong>Wallet Address:</strong> {{ wallet_address }}</p>
+    <p class="balance">Balance: {{ balance }} CLT</p>
+
+    <form method="POST" action="/send">
+      <input type="text" name="receiver" placeholder="Receiver's Wallet Address" required>
+      <input type="number" name="amount" step="0.01" placeholder="Amount (e.g. 0.15)" required>
+      <button class="send-btn" type="submit">Send Transaction</button>
+    </form>
+
+    {% if message %}
+      <p style="color:#00e0ff; margin-top:15px;">{{ message }}</p>
+    {% endif %}
+
+    <div class="bottom-btns">
+      <button onclick="location.href='/mine_block'">Mine Block</button>
+      <button onclick="location.href='/view_balance'">View Balance</button>
+      <button onclick="location.href='/view_chain'">View Blockchain</button>
+    </div>
+  </div>
+
+  <footer>© 2025 CryptoLite • Secure • Transparent • Decentralized</footer>
+</body>
+</html>

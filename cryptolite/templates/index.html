@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryptoLite | Your Mini Blockchain Wallet</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #000428, #004e92);
+      color: white;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #00c6ff;
+      border: none;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #0072ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>💰 Welcome to CryptoLite</h1>
+    {% if wallet_created %}
+      <p>Your wallet address:</p>
+      <code>{{ wallet_address }}</code>
+      <p>Balance: {{ balance }} BTC</p>
+      <a href="/home"><button>Go to Dashboard</button></a>
+    {% else %}
+      <form action="/create_wallet" method="POST">
+        <button type="submit">Create My Wallet</button>
+      </form>
+    {% endif %}
+  </div>
+</body>
+</html>

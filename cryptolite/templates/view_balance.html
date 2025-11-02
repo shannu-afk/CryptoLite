@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Balance - CryptoLite</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top left, #0a0f1f, #000);
+      color: white;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(10, 10, 30, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-weight: 700;
+      color: #00e0ff;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 12px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #00e0ff;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 70px auto;
+      background: rgba(30, 35, 55, 0.9);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+      text-align: center;
+      color: #00e0ff;
+      margin-bottom: 20px;
+    }
+
+    .balance {
+      text-align: center;
+      font-size: 20px;
+      color: #00ff84;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+
+    th {
+      color: #00e0ff;
+    }
+
+    tr:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">💰 CryptoLite</div>
+    <div>
+      <a href="/home">Home</a>
+      <a href="/view_chain">Blockchain</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Your Wallet</h2>
+    <p class="balance">Balance: {{ balance }} CLT</p>
+
+    <table>
+      <tr>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Amount</th>
+      </tr>
+      {% for tx in transactions %}
+      <tr>
+        <td>{{ tx.sender }}</td>
+        <td>{{ tx.receiver }}</td>
+        <td>{{ tx.amount }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <footer>© 2025 CryptoLite • Transparent • Decentralized</footer>
+</body>
+</html>

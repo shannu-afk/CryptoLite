@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryptoLite | Create Wallet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+    .navbar {
+      background: rgba(17, 24, 39, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<nav class="navbar">
+  <div class="logo">
+    <span>🪙</span> <a href="/">CryptoLite</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/home">Home</a></li>
+
+    {% if not wallet_created %}
+      <li><a href="/create_wallet">Create Wallet</a></li>
+    {% endif %}
+
+    <li><a href="/view_balance">Balance</a></li>
+    <li><a href="/view_chain">Blockchain</a></li>
+  </ul>
+</nav>
+
+
+  <!-- Create Wallet Card -->
+  <main class="flex-grow flex items-center justify-center px-4">
+    <div class="card max-w-lg w-full p-8 text-center">
+      <h2 class="text-3xl font-bold text-cyan-400 mb-6">Create Your Wallet</h2>
+      <p class="text-gray-300 mb-6">
+        Generate your personal CryptoLite wallet instantly.  
+        Keep your keys safe and start your blockchain journey 🚀
+      </p>
+
+      <form action="/create_wallet" method="POST">
+        <button 
+          type="submit" 
+          class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 rounded-md transition-all duration-200">
+          Create Wallet
+        </button>
+      </form>
+
+      {% if wallet %}
+      <div class="mt-6 text-left">
+        <p class="text-gray-400 text-sm mb-1">Wallet Address:</p>
+        <div class="bg-black/30 border border-gray-600 px-4 py-2 rounded-md text-sm break-all">
+          {{ wallet.address }}
+        </div>
+        <p class="mt-4 text-lg">💰 Balance: 
+          <span class="text-green-400 font-semibold">{{ balance }} CLT</span>
+        </p>
+        <div class="mt-6 flex justify-center">
+          <a href="/home" class="bg-cyan-500 hover:bg-cyan-600 text-white py-2 px-5 rounded-md font-medium">Go to Dashboard</a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+
+  <footer class="text-center text-gray-500 py-4 text-sm">
+    © 2025 CryptoLite — Secure • Transparent • Simple
+  </footer>
+</body>
+</html>

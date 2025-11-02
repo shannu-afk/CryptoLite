@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockchain Explorer - CryptoLite</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top left, #0a0f1f, #000);
+      color: white;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(10, 10, 30, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-weight: 700;
+      color: #00e0ff;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 12px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #00e0ff;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .block {
+      background: rgba(30, 35, 55, 0.9);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .block h3 {
+      color: #00e0ff;
+    }
+
+    .tx {
+      margin-left: 20px;
+      background: rgba(255,255,255,0.05);
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">💰 CryptoLite</div>
+    <div>
+      <a href="/home">Home</a>
+      <a href="/view_balance">Balance</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 style="text-align:center;color:#00ff84;">Blockchain Explorer</h2>
+    {% for block in chain %}
+      <div class="block">
+        <h3>Block {{ block['index'] }}</h3>
+        <p><strong>Timestamp:</strong> {{ block['timestamp'] }}</p>
+        <p><strong>Previous Hash:</strong> {{ block['previous_hash'] }}</p>
+        <p><strong>Hash:</strong> {{ block['hash'] }}</p>
+        <p><strong>Transactions:</strong></p>
+        {% for tx in block['transactions'] %}
+          <div class="tx">
+            <p>From: {{ tx.sender }} → To: {{ tx.receiver }}</p>
+            <p>Amount: {{ tx.amount }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <footer>© 2025 CryptoLite • Immutable • Transparent • Decentralized</footer>
+</body>
+</html>
